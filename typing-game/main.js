@@ -12,8 +12,8 @@ let time = levels.easy;
 let score = 0;
 let isPlaying;
 let currentLevel = levels.easy;
-let lettersNumber = 5;
-const wordsKey = '62a953bef2mshd5aacbc5c475450p177267jsn352eb2f97ede';
+
+
 
 // DOM elements
 const wordInput = document.querySelector('#word-input');
@@ -26,56 +26,32 @@ const difficulty = document.querySelector('#difficulty');
 const restart = document.querySelector('#restart');
 
 //Words
-const wordsData = fetch(`https://wordsapiv1.p.mashape.com/words/?letters=${lettersNumber}`, {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-		"x-rapidapi-key": "62a953bef2mshd5aacbc5c475450p177267jsn352eb2f97ede"
-	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.log(err);
-});
+let wordsData = function () {
+  fetch(`https://wordsapiv1.p.mashape.com/words/?random=true`, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+      "x-rapidapi-key": "62a953bef2mshd5aacbc5c475450p177267jsn352eb2f97ede",
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then((data) => {
+      currentWord.innerHTML = data.word.split(' ')[0];
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
-console.log(wordsData);
-
-const words = [
-  'hat',
-  'river',
-  'lucky',
-  'statue',
-  'generate',
-  'stubborn',
-  'cocktail',
-  'runaway',
-  'joke',
-  'developer',
-  'establishment',
-  'hero',
-  'javascript',
-  'nutrition',
-  'revolver',
-  'echo',
-  'siblings',
-  'investigate',
-  'horrendous',
-  'symptom',
-  'laughter',
-  'magic',
-  'master',
-  'space',
-  'definition'
-];
 
 // Initialize Game
 function init() {
   // Show number of seconds in UI
   seconds.innerHTML = currentLevel;
   //Get a word
-  showWord(words);
+  wordsData();
   //Start matching an input and a word
   wordInput.addEventListener('input', startMatch)
   //Call a countdown
@@ -86,12 +62,6 @@ function init() {
   difficulty.addEventListener('click', changeDifficulty);
   //Listening to restart game
   restart.addEventListener('click', restartGame);
-}
-
-//Pick and show a random word
-function showWord(words) {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  currentWord.innerHTML = words[randomIndex];
 }
 
 //Countdown timer
@@ -110,7 +80,7 @@ function startMatch() {
   if (matchWords()) {
     isPlaying = true;
     time = currentLevel + 1;
-    showWord(words);
+    wordsData();
     wordInput.value = '';
     score++;
   };
@@ -136,6 +106,7 @@ function matchWords() {
 //Check game status
 function checkStatus() {
   if (!isPlaying && time === 0) {
+    wordInput.setAttribute('disabled', 'disabled');
     message.innerHTML = 'Game over :-(';
     score = -1;
   }
@@ -145,10 +116,13 @@ function checkStatus() {
 function changeDifficulty(event) {
   currentLevel = levels[event.target.innerText];
   seconds.innerHTML = currentLevel;
+  restartGame();
 }
 
 //Restart Game
 function restartGame() {
+  //get a new word 
+  wordsData();
   //reset time
   time = currentLevel + 1;
   //reset score
@@ -156,4 +130,6 @@ function restartGame() {
   scoreDisplay.innerHTML = 0;
   //change message
   message.innerHTML = '';
-}
+  wordInput.removeAttribute('disabled');
+  wordInput.value = '';
+} 
