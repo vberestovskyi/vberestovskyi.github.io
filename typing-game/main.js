@@ -13,8 +13,6 @@ let score = 0;
 let isPlaying;
 let currentLevel = levels.easy;
 
-
-
 // DOM elements
 const wordInput = document.querySelector('#word-input');
 const currentWord = document.querySelector('#current-word');
@@ -24,6 +22,7 @@ const message = document.querySelector('#message');
 const seconds = document.querySelector('#seconds');
 const difficulty = document.querySelector('#difficulty');
 const restart = document.querySelector('#restart');
+const hiScore = document.querySelector('#hiScore');
 
 //Words
 let wordsData = function () {
@@ -45,13 +44,14 @@ let wordsData = function () {
     });
 }
 
-
 // Initialize Game
 function init() {
-  // Show number of seconds in UI
-  seconds.innerHTML = currentLevel;
   //Get a word
   wordsData();
+  //Display HiScore
+  displayHiScore();
+  // Show number of seconds in UI
+  seconds.innerHTML = currentLevel;
   //Start matching an input and a word
   wordInput.addEventListener('input', startMatch)
   //Call a countdown
@@ -83,13 +83,16 @@ function startMatch() {
     wordsData();
     wordInput.value = '';
     score++;
+    if (localStorage.getItem('hiScore') < score) {
+      localStorage.setItem('hiScore', score);
+      displayHiScore();
+    }
   };
   if (score === -1) {
     scoreDisplay.innerHTML = 0;
   } else {
     scoreDisplay.innerHTML = score;
   }
-
 }
 
 //Match a user input and a target word 
@@ -132,4 +135,11 @@ function restartGame() {
   message.innerHTML = '';
   wordInput.removeAttribute('disabled');
   wordInput.value = '';
-} 
+}
+
+//Display hiscore
+function displayHiScore() {
+  if (localStorage.getItem('hiScore')) {
+    hiScore.innerHTML = localStorage.getItem('hiScore');
+  }
+}
