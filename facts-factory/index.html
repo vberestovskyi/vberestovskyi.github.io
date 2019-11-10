@@ -59,7 +59,7 @@
     function getFactFetch() {
       let number = numberInput.value;
       if (number != '') {
-        fetch('https://cors-anywhttp://numbersapi.com/here.herokuapp.com/' + number)
+        fetch('https://cors-anywhere.herokuapp.com/http://numbersapi.com/' + number)
           .then(response => response.text())
           .then(data => {
             fact.style.display = 'block';
