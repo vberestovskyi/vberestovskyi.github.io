@@ -48,6 +48,24 @@
   <!--Accordion-->
   <div class="">
     <div class="container accordion border-primary" id="jsAccordion">
+      <!--TMDB-->
+      <div class="card">
+        <div class="card-header" id="tmdb">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTmdb"
+              aria-expanded="true" aria-controls="collapseTmdb">
+              TV Show Info
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTmdb" class="collapse" aria-labelledby="tmdb" data-parent="#jsAccordion">
+          <div class="card-body">
+            <p>An APP to browse TV shows, built on TMDB API</p>
+            <a href="https://vberestovskyi.github.io/tmdb/" class="btn btn-primary mb-0">Try it!</a>
+          </div>
+        </div>
+      </div>
+      <!--Need4type-->
       <div class="card">
         <div class="card-header" id="typingGame">
           <h2 class="mb-0">
@@ -64,6 +82,7 @@
           </div>
         </div>
       </div>
+      <!--Facts factory-->
       <div class="card">
         <div class="card-header" id="factsFactory">
           <h2 class="mb-0">
@@ -80,22 +99,23 @@
           </div>
         </div>
       </div>
+      <!--Rock Paper Scissors-->
       <div class="card">
-          <div class="card-header" id="rpsGame"> 
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                data-target="#collapseRpsGame" aria-expanded="true" aria-controls="collapseRpsGame">
-                Rock Paper Scissors
-              </button>
-            </h2>
-          </div>
-          <div id="collapseRpsGame" class="collapse" aria-labelledby="rpsGame" data-parent="#jsAccordion">
-            <div class="card-body">
-              <p>A classic "Rock Paper Scissors" game</p>
-              <a href="https://vberestovskyi.github.io/rps-game/" class="btn btn-primary mb-0">Try it!</a>
-            </div>
+        <div class="card-header" id="rpsGame">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseRpsGame"
+              aria-expanded="true" aria-controls="collapseRpsGame">
+              Rock Paper Scissors
+            </button>
+          </h2>
+        </div>
+        <div id="collapseRpsGame" class="collapse" aria-labelledby="rpsGame" data-parent="#jsAccordion">
+          <div class="card-body">
+            <p>A classic "Rock Paper Scissors" game</p>
+            <a href="https://vberestovskyi.github.io/rps-game/" class="btn btn-primary mb-0">Try it!</a>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
