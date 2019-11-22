@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!--Bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!--LeafletJS-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+  <title>International space station location</title>
+</head>
+
+<body>
+  <div class="card container mt-3">
+    <img src="images/iss.png" class="mx-auto mt-3" alt="International space station">
+    <div class="card-body">
+      <h5 class="card-title text-center">International Space Station Location</h5>
+      <p class="card-text">The International Space Station (ISS) is a space station in low Earth orbit (an average
+        altitude is 400 km). It circles the Earth in roughly 92 minutes and
+        completes 15.5 orbits per day.</p>
+      <p>The ISS is moving at an incredible speed, close to 28,000 km/h! Where is it right now?</p>
+    </div>
+  </div>
+  <div id="map" class="container my-3" style="width: auto; height: 400px"> </div>
+
+
+  <script src="main.js"></script>
+</body>
+
+</html>
