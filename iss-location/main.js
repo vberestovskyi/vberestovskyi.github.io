@@ -17,7 +17,7 @@ const iss = L.marker([0, 0], { icon: ISSIcon }).addTo(map);
 
 //Fetching ISS coordinates data
 let moveISS = function () {
-  fetch('http://api.open-notify.org/iss-now.json')
+  fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-now.json')
     .then(response => {
       return response.json();
     })
